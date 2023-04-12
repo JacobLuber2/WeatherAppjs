@@ -6,10 +6,8 @@ let toggle = document.getElementById("toggle");
 let saveBtn = document.getElementById("save");
 let toggleF = false;
 let toggleC = true;
-let newLine = document.createElement("br");
 let div = document.getElementById("removeButtons");
 let ul = document.querySelector("ul");
-let br = document.createElement("br");
 function getGeoLocation(country1, city1) {
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city1},${country1}&limit=1&appid=${apiKey.value}`, { mode: `cors` })
         .then((response) => {
@@ -66,6 +64,8 @@ toggle.addEventListener("click", (event) => {
 saveBtn.addEventListener("click", (event) => {
     event.preventDefault();
     let newLocation = document.createElement("button");
+    let li = document.createElement("li")
+    li.id = data.name
     let newLocation2 = document.getElementById(data.name);
     let removeBtn = document.createElement("button");
     if (newLocation2) {
@@ -79,17 +79,16 @@ saveBtn.addEventListener("click", (event) => {
         removeBtn.id = `remove ${data.name}`
         removeBtn.textContent = `remove ${data.name}`
         removeBtn.addEventListener("click", (event) => {
-            newLocation.remove(data.id)
-            removeBtn.remove(data.id)
+            li.remove(data.id)
         });
         newLocation.addEventListener("click", (event) => {
             event.preventDefault();
             helper(temp1, temp2);
         });
-        ul.append(newLocation)
-        ul.append(removeBtn)
-        br.appendChild(newLocation);
-        br.appendChild(removeBtn);
+        li.append(newLocation)
+        li.append(removeBtn)
+        ul.append(li)
+
     }
 
 });
