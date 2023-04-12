@@ -1,0 +1,11 @@
+form, #save {
+text-transform: lowercase;
+}
+body {
+background-color: green;
+}
+.labelsinputs {
+display: flex;
+flex-direction: column;
+justify-content: left;
+}
